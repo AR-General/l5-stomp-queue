@@ -19,7 +19,7 @@
         "illuminate/console": "5.x",
         "illuminate/queue": "5.x",
         "illuminate/broadcasting": "5.x",
-        "symfony/process": "~2.6",
+        "symfony/process": "~3.2",
         "stomp-php/stomp-php" : "4.*"
     },
     "require-dev": {
