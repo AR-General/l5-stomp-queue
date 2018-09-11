@@ -64,4 +64,16 @@ class StompBroadcaster implements Broadcaster
             $this->stomp->connect(Arr::get($this->credentials, 'username', ''), Arr::get($this->credentials, 'password', ''));
         }
     }
+
+    public function auth($request) {
+        dump($request);
+        return true;
+    }
+
+    public function validAuthenticationResponse($request, $result) {
+        dump($request);
+        dump($result);
+        return true;
+    }
+
 }

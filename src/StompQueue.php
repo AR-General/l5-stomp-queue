@@ -184,4 +184,10 @@ class StompQueue extends Queue implements QueueContract
             return [];
         }
     }
+
+    public function size($queue = null) {
+        dump($queue);
+        return 0;
+    }
+
 }
