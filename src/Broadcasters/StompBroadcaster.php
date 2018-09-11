@@ -32,6 +32,10 @@ class StompBroadcaster implements Broadcaster
     {
         $this->stomp = $stomp;
         $this->credentials = $credentials;
+//        dump($stomp);
+//        dump($credentials);
+//        dump($this->stomp->getClient()->isConnected());
+        
     }
 
     /**
@@ -49,7 +53,8 @@ class StompBroadcaster implements Broadcaster
         $payload = json_encode(['event' => $event, 'data' => $payload]);
 
         foreach ($channels as $channel) {
-            $this->stomp->send($channel, $payload);
+            $this->stomp->getClient()->send($channel, $payload);
+//            $this->stomp->send($channel, $payload);
         }
     }
 
@@ -60,8 +65,11 @@ class StompBroadcaster implements Broadcaster
      */
     protected function connect()
     {
-        if (!$this->stomp->isConnected()) {
-            $this->stomp->connect(Arr::get($this->credentials, 'username', ''), Arr::get($this->credentials, 'password', ''));
+//        if (!$this->stomp->isConnected()) {
+//            $this->stomp->connect(Arr::get($this->credentials, 'username', ''), Arr::get($this->credentials, 'password', ''));
+//        }
+        if (!$this->stomp->getClient()->isConnected()) {
+            $this->stomp->getClient()->connect(Arr::get($this->credentials, 'username', ''), Arr::get($this->credentials, 'password', ''));
         }
     }
 
