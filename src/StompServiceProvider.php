@@ -70,8 +70,15 @@ class StompServiceProvider extends ServiceProvider
             //$stomp->sync         = Arr::get($config, 'sync', false);
             //$stomp->prefetchSize = Arr::get($config, 'prefetchSize', 1);
             //$stomp->clientId     = Arr::get($config, 'clientId', null);
+            $stomp->password     = Arr::get($config, 'password', null);
+            $stomp->username     = Arr::get($config, 'username', null);
+            $stomp->clientId     = Arr::get($config, 'clientId', null);
 
-            return new StompBroadcaster($stomp);
+            $credentials = [];
+        $credentials['username'] = $stomp->username;
+        $credentials['password'] = $stomp->password;
+        $credentials['clientId'] = $stomp->clientId;
+            return new StompBroadcaster($stomp,$credentials);
         });
     }
 
